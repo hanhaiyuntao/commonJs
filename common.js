@@ -844,7 +844,24 @@ var one= new CS();
 //3 CS.call(one) 将CS的this指针替换成one,然后调用CS原型上的方法
 
 
-
+/*微信小程序引用公共方法*/
+//1-          在根目录下新建一个utils文件夹，新建util.js在这里我们可以将通用的方法写在这
+//是否为中文
+function IsChinese(str) {
+  var reg = /^[\u0391-\uFFE5]+$/;
+  return Regular(str, reg);
+}
+module.exports = {
+  IsChinese: IsChinese,
+}
+//2-在引用的js中
+//test.js
+var util = require('../../utils/util.js');
+Page({
+    onLoad: function () {
+    console.log("判断是否为中文:"+util.IsChinese('测试'));
+    }
+})
 
 
 
