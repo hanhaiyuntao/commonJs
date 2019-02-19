@@ -844,7 +844,8 @@ var one= new CS();
 //3 CS.call(one) 将CS的this指针替换成one,然后调用CS原型上的方法
 
 
-/*微信小程序引用公共方法*/
+/*微信
+在js中引用公共方法*/
 //1-          在根目录下新建一个utils文件夹，新建util.js在这里我们可以将通用的方法写在这
 //是否为中文
 function IsChinese(str) {
@@ -863,13 +864,36 @@ Page({
     }
 })
 
+//在wxml中引用公共方法的
 
+在utils中信建wxs
+var filters = {
+  /**
+   * 判断值的颜色(直接输出)
+   * @param {} val 
+   * @returns {} upColor 上升颜色  downColor 下降颜色 =0 ''
+   */
+  trendColor:function(val){
+    if (val != 'null' && val != '') {
+      if (val > 0) {
+        return 'upColor';
+      } else if (val < 0) {
+        return 'downColor';
+      } else {
+        return '';
+      }
+    } else {
+      return ''
+    }
+  }
+}
+module.exports = {
+  trendColor: filters.trendColor
+}
 
-
-
-
-
-
+//在引用界面引用
+<wxs module="filters" src="../../utils/math.wxs" />
+<view class="td {{filters.trendColor(item.c_return_annual)}}">{{item.c_return_annual}}%</view>
 
 
 
