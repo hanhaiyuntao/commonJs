@@ -844,7 +844,7 @@ var one= new CS();
 //3 CS.call(one) 将CS的this指针替换成one,然后调用CS原型上的方法
 
 
-/*微信
+/*微信小程序
 在js中引用公共方法*/
 //1-          在根目录下新建一个utils文件夹，新建util.js在这里我们可以将通用的方法写在这
 //是否为中文
@@ -896,6 +896,15 @@ module.exports = {
 <view class="td {{filters.trendColor(item.c_return_annual)}}">{{item.c_return_annual}}%</view>
 
 
+//在wx.request接口中跳转
+setTimeout(function(){
+  wx.switchTab({
+    url: '/pages/user/user'
+  })
+},2000)
+
+
+//微信小程序不支持长按识别二维码
 
 
 
