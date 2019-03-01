@@ -904,9 +904,20 @@ setTimeout(function(){
 },2000)
 
 
-//微信小程序不支持长按识别二维码
+//微信小程序不支持长按识别二维码,但可以支持小程序二维码
+<image  class="qrCode"  src="https://img.fetow.com/Public/Index/images/shewm.jpg"  
+    data-src="https://img.fetow.com/Public/Index/images/shewm.jpg" catchtap = "previewImage" ></image>
 
-
+  /*长按图片识别*/
+  previewImage:function(event){
+    var current = event.target.dataset.src;
+    wx.previewImage({
+      current: current,
+      urls: [current]
+    })
+  }
+//在微信小程序中签入网页
+<web-view src="https://www.hanhaiyuntao.top//"></web-view>
 
 
 
