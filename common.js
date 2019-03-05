@@ -916,8 +916,16 @@ setTimeout(function(){
       urls: [current]
     })
   }
-//在微信小程序中签入网页
+//在微信小程序中签入网页(必须新建一个界面作为载体)
 <web-view src="https://www.hanhaiyuntao.top//"></web-view>
+
+
+
+//小程序生命周期授权
+
+1/设定index为首页,在app.js中进行校验授权checkUserInfoAuth();成功返回首页,失败返回授权界面(新界面)
+2/在index中的onshow中调用 app.checkUserInfoAuth();onshow为界面刚初始化时候或者从后台进入前台显示时
+
 
 
 
