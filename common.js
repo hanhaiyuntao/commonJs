@@ -609,7 +609,57 @@ $.fn.scrollUnique = function() {
     });	
 };
 
+/**
+ * */***19-拖动滑块(移动端仿360悬浮小球拖动)
+ * @param {} drag:拖动的id
+ * @returns {} 
+ */
+function dragBlock(drag) {
+    //限制最大宽高，不让滑块出去
+    var maxW = document.body.clientWidth - drag.offsetWidth;
+    var maxH = document.body.clientHeight - drag.offsetHeight;
+    //手指触摸开始，记录div的初始位置
+    drag.addEventListener('touchstart', function (e) {
+        var ev = e || window.event;
+        var touch = ev.targetTouches[0];
+        oL = touch.clientX - drag.offsetLeft;
+        oT = touch.clientY - drag.offsetTop;
+        beginX = touch.clientX;
+        beginY = touch.clientY;
+        document.addEventListener("touchmove", defaultEvent, { passive: false });
+    }, { passive: false });
+    //触摸中的，位置记录
+    drag.addEventListener('touchmove', function (e) {
+        var ev = e || window.event;
+        var touch = ev.targetTouches[0];
+        var oLeft = touch.clientX - oL;
+        var oTop = touch.clientY - oT;
+        if (oLeft < 0) {
+            oLeft = 0;
+        } else if (oLeft >= maxW) {
+            oLeft = maxW;
+        }
+        if (oTop < 0) {
+            oTop = 0;
+        } else if (oTop >= maxH) {
+            oTop = maxH;
+        }
+        drag.style.left = oLeft + 'px';
+        drag.style.top = oTop + 'px';
 
+    }, { passive: false });
+    //触摸结束时的处理
+    drag.addEventListener('touchend', function (e) {
+        document.removeEventListener("touchmove", defaultEvent);
+    }, { passive: false });
+    //阻止默认事件
+    function defaultEvent(e) {
+        e.preventDefault();
+    }
+
+}
+
+dragBlock(pdfIcon);//调用拖动方法
 
 
 
