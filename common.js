@@ -609,22 +609,72 @@ $.fn.scrollUnique = function() {
     });	
 };
 
+/**
+ * *19-拖动滑块(移动端仿360悬浮小球拖动)
+ * @param {} drag:拖动的id
+ * @returns {} 
+ */
+function dragBlock(drag) {
+    //限制最大宽高，不让滑块出去
+    var maxW = document.body.clientWidth - drag.offsetWidth;
+    var maxH = document.body.clientHeight - drag.offsetHeight;
+    //手指触摸开始，记录div的初始位置
+    drag.addEventListener('touchstart', function (e) {
+        var ev = e || window.event;
+        var touch = ev.targetTouches[0];
+        oL = touch.clientX - drag.offsetLeft;
+        oT = touch.clientY - drag.offsetTop;
+        beginX = touch.clientX;
+        beginY = touch.clientY;
+        document.addEventListener("touchmove", defaultEvent, { passive: false });
+    }, { passive: false });
+    //触摸中的，位置记录
+    drag.addEventListener('touchmove', function (e) {
+        var ev = e || window.event;
+        var touch = ev.targetTouches[0];
+        var oLeft = touch.clientX - oL;
+        var oTop = touch.clientY - oT;
+        if (oLeft < 0) {
+            oLeft = 0;
+        } else if (oLeft >= maxW) {
+            oLeft = maxW;
+        }
+        if (oTop < 0) {
+            oTop = 0;
+        } else if (oTop >= maxH) {
+            oTop = maxH;
+        }
+        drag.style.left = oLeft + 'px';
+        drag.style.top = oTop + 'px';
 
+    }, { passive: false });
+    //触摸结束时的处理
+    drag.addEventListener('touchend', function (e) {
+        document.removeEventListener("touchmove", defaultEvent);
+    }, { passive: false });
+    //阻止默认事件
+    function defaultEvent(e) {
+        e.preventDefault();
+    }
+
+}
+
+dragBlock(pdfIcon);//调用拖动方法
 
 
 
 /***20- jq原理 */
 
-$是定义的F的new的实例
+//$是定义的F的new的实例
 
     var $ = function(selector, context){
         return new F(selector, context)
     };
-$.fn是F的prototype
+//$.fn是F的prototype
 
    $.fn = F.prototype;
 
-在F的原型上定义方法   
+//在F的原型上定义方法   
 F.prototype.hide = function(){
     this.element.style.display = 'none';
 };
@@ -844,7 +894,11 @@ var one= new CS();
 //3 CS.call(one) 将CS的this指针替换成one,然后调用CS原型上的方法
 
 
+<<<<<<< HEAD
 /*微信
+=======
+/*微信小程序
+>>>>>>> 9f4bf383315aa0149db6f6a75fa4d87f77825ec3
 在js中引用公共方法*/
 //1-          在根目录下新建一个utils文件夹，新建util.js在这里我们可以将通用的方法写在这
 //是否为中文
@@ -896,7 +950,39 @@ module.exports = {
 <view class="td {{filters.trendColor(item.c_return_annual)}}">{{item.c_return_annual}}%</view>
 
 
+<<<<<<< HEAD
 
+=======
+//在wx.request接口中跳转
+setTimeout(function(){
+  wx.switchTab({
+    url: '/pages/user/user'
+  })
+},2000)
+
+
+//微信小程序不支持长按识别二维码,但可以支持小程序二维码
+<image  class="qrCode"  src="https://img.fetow.com/Public/Index/images/shewm.jpg"  
+    data-src="https://img.fetow.com/Public/Index/images/shewm.jpg" catchtap = "previewImage" ></image>
+
+  /*长按图片识别*/
+  previewImage:function(event){
+    var current = event.target.dataset.src;
+    wx.previewImage({
+      current: current,
+      urls: [current]
+    })
+  }
+//在微信小程序中签入网页(必须新建一个界面作为载体)
+<web-view src="https://www.hanhaiyuntao.top//"></web-view>
+
+
+
+//小程序生命周期授权
+
+1/设定index为首页,在app.js中进行校验授权checkUserInfoAuth();成功返回首页,失败返回授权界面(新界面)
+2/在index中的onshow中调用 app.checkUserInfoAuth();onshow为界面刚初始化时候或者从后台进入前台显示时
+>>>>>>> 9f4bf383315aa0149db6f6a75fa4d87f77825ec3
 
 
 
