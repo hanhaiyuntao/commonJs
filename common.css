@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-﻿/*解决不同版本的媒体查询问题*/
-=======
-/*解决不同版本的媒体查询问题*/
->>>>>>> 9f4bf383315aa0149db6f6a75fa4d87f77825ec3
-/*@-ms-viewport{ width: device-width; }
-@-o-viewport{ width: device-width; }
-@viewport{ width: device-width; }*/
-*{-webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box;}
+
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0;}
 body { color:rgba(51,51,51,0.8); font-size:14px; font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif; }
 td,th,caption { font-size:14px; }
@@ -21,7 +13,6 @@ input, textarea, select, button { font:14px "Arial","Microsoft YaHei","黑体","
 input,button{border: none; outline: none;}
 input[type=checkbox], input[type=radio]{margin: 0;}
 table { border-collapse:collapse; }
-html {overflow-y: scroll;}
 p{margin: 0;}
 .clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
 .clearfix { *zoom:1; }/*公共类*/
