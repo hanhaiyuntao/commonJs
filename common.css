@@ -115,61 +115,62 @@ p{margin: 0;}
 
 
 /*margin-top值*/
-.mar2 {
+.mt2 {
 	margin-top: 2px;
 }
 
-.mar3 {
+.mt3 {
 	margin-top: 3px;
 }
 
-.mar5 {
+.mt5 {
 	margin-top: 5px;
 }
 
-.mar7 {
+.mt7 {
 	margin-top: 7px;
 }
 
-.mar10 {
+.mt10 {
 	margin-top: 10px;
 }
 
-.mar12 {
+.mt12 {
 	margin-top: 12px;
 }
 
-.mar13 {
+.mt13 {
 	margin-top: 13px;
 }
 
-.mar15 {
+.mt15 {
 	margin-top: 15px;
 }
 
-.mar20 {
+.mt20 {
 	margin-top: 20px;
 }
 
-.mar26 {
+.mt26 {
 	margin-top: 26px;
 }
 
-.mar30 {
+.mt30 {
 	margin-top: 30px;
 }
 
-.mar40 {
+.mt40 {
 	margin-top: 40px;
 }
 
-.mar70 {
+.mt70 {
 	margin-top: 70px;
 }
 
-.mar80 {
+.mt80 {
 	margin-top: 80px;
 }
+
 /*margin-bottom值*/
 .mb3 {
 	margin-bottom: 3px;
