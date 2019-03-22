@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 /**
  * Created by 24028 on 2018/11/1.
  */
@@ -843,7 +852,41 @@ console.log(checkType('18.36','money'));
     }
 
 
+/********//判断浏览器类型 进行不同网页跳转*********/
+function goPAGE() {
 
+    //先获取当前链接 是PC 还是mobile
+    var ntpe = null;
+    if (window.location.href.indexOf('pc') != -1) {
+        ntpe = 'pc';
+    }
+
+    if (window.location.href.indexOf('mobile') != -1) {
+        ntpe = 'mobile';
+    }
+
+
+    //如果是移动端浏览器
+    if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+        //如果地址是PC端的 进行url转换
+        if (ntpe == 'pc') {
+            window.location = window.location.href.replace('pc', 'mobile');
+        }
+        else if (ntpe == null) {
+            window.location = '/mobile/index.html';
+        }
+    }
+    //如果是电脑端浏览器
+    else {
+        //如果地址是mobile的 进行url转换
+        if (ntpe == 'mobile') {
+            window.location = window.location.href.replace('mobile', 'pc');
+        }
+        else if (ntpe == null) {
+            window.location = '/pc/index.html';
+        }
+    }
+}
 
 
 
