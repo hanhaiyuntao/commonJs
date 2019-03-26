@@ -478,7 +478,7 @@ var division = function (arg1, arg2) {
  * @param {} mustDelay 间隔时间 触发
  * @returns {} 
  */
-function delayFn2 (fn, delay, mustDelay){
+function delayFn (fn, delay, mustDelay){
      var timer = null;
      var t_start;
      return function(){
@@ -502,6 +502,10 @@ function delayFn2 (fn, delay, mustDelay){
          }
      };
 }
+/**
+ * 函数节流,减少资源消耗
+ */
+window.onscroll = delayFn(scrollHead, 100, 100);
 
 
 
