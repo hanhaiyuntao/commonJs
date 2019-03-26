@@ -471,6 +471,13 @@ var division = function (arg1, arg2) {
 /*
  *15    -函数抖动节流(onmouseover,onresize,onscroll);
  */
+/**
+ * 
+ * @param {} fn 函数名
+ * @param {} delay 延迟时间
+ * @param {} mustDelay 间隔时间 触发
+ * @returns {} 
+ */
 function delayFn2 (fn, delay, mustDelay){
      var timer = null;
      var t_start;
@@ -941,7 +948,6 @@ var one= new CS();
 /*微信
 =======
 /*微信小程序
->>>>>>> 9f4bf383315aa0149db6f6a75fa4d87f77825ec3
 在js中引用公共方法*/
 //1-          在根目录下新建一个utils文件夹，新建util.js在这里我们可以将通用的方法写在这
 //是否为中文
