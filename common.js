@@ -194,6 +194,30 @@ function getCookie(name) {
 
 
 
+//获取cookie值(兼容ios转码)
+function GetCookie(cname) {
+    var arr,reg = new RegExp("(^| )" + cname + "=([^;]*)(;|$)");
+    if (arr = document.cookie.match(reg)) {
+        var cvalue = decodeURI(arr[2]);
+        return cvalue;
+    } else {
+        return null;
+    }
+}
+
+
+
+//设置cookie(兼容ios转码)
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    cvalue= encodeURI(cvalue);
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+
+
 //8- 数组排序并去重
 
 let arr1 = [1, 25, 2, 26, 1234, 6, 213];
