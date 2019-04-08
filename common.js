@@ -886,8 +886,10 @@ console.log(checkType('18.36','money'));
         }
     }
 
+//
 
-/********//判断浏览器类型 进行不同网页跳转*********/
+
+/********判断浏览器类型 进行不同网页跳转*********/
 function goPAGE() {
 
     //先获取当前链接 是PC 还是mobile
@@ -972,7 +974,18 @@ var one= new CS();
 //3 CS.call(one) 将CS的this指针替换成one,然后调用CS原型上的方法
 
 
-<<<<<<< HEAD
+
+
+/****************数据库传输json格式问题(该传输字符串还是json)********************/
+
+//平时一般传输的是json,但是使用base64加密困难
+//特殊时候传输字符串,需要用JSON.parse或者eval,但是eval解析成json的时候,会识别并执行js代码,而JSON.parse会报错
+//JSON.stringfy()很少使用
+
+
+
+
+
 /*微信
 =======
 /*微信小程序
@@ -1027,9 +1040,6 @@ module.exports = {
 <view class="td {{filters.trendColor(item.c_return_annual)}}">{{item.c_return_annual}}%</view>
 
 
-<<<<<<< HEAD
-
-=======
 //在wx.request接口中跳转
 setTimeout(function(){
   wx.switchTab({
@@ -1057,9 +1067,9 @@ setTimeout(function(){
 
 //小程序生命周期授权
 
-1/设定index为首页,在app.js中进行校验授权checkUserInfoAuth();成功返回首页,失败返回授权界面(新界面)
-2/在index中的onshow中调用 app.checkUserInfoAuth();onshow为界面刚初始化时候或者从后台进入前台显示时
->>>>>>> 9f4bf383315aa0149db6f6a75fa4d87f77825ec3
+//1/设定index为首页,在app.js中进行校验授权checkUserInfoAuth();成功返回首页,失败返回授权界面(新界面)
+//2/在index中的onshow中调用 app.checkUserInfoAuth();onshow为界面刚初始化时候或者从后台进入前台显示时
+
 
 
 
