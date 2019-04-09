@@ -715,15 +715,13 @@ dragBlock(pdfIcon);//调用拖动方法
         return new F(selector, context)
     };
 //$.fn是F的prototype
-
+//extend()方法作用就是合并另个对象，有相同的则覆盖，没有相同的则添加
    $.fn = F.prototype;
 
 //在F的原型上定义方法   
 F.prototype.hide = function(){
     this.element.style.display = 'none';
 };
-
-
 
 var $ = function(selector, context) {
     return new F(selector, context);
@@ -758,10 +756,15 @@ $.fn.extend({
     data: function() {},
     // ...
 });
-
-
-
-
+//立即执行函数
+(function(str){
+    alert(str)
+})('output')
+//相当于
+funtion OutPutFun(str){
+    alert(str);
+}
+OutPutFun("output");
 
 /**21 --- 防止用户点击过快*/
    var isClick = true;
