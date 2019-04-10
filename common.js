@@ -715,8 +715,9 @@ dragBlock(pdfIcon);//调用拖动方法
         return new F(selector, context)
     };
 //$.fn是F的prototype
+// $.fn  //多个使用,例如show  $('p').bold();
 //$.extend()方法作用就是合并另个对象，有相同的则覆盖，没有相同的则添加,引用方法: $.minValue(20,30);
-// $.fn.extend必须得加元素才能生效,引用方法:$(".one").bold();
+// $.fn.extend必须得加元素才能生效,//实例化对象后添加jquery的成员函数 $("p").alertWhileClick
    $.fn = F.prototype;
 
 //在F的原型上定义方法   
