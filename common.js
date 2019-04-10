@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 /**
  * Created by 24028 on 2018/11/1.
  */
@@ -987,6 +978,25 @@ var one= new CS();
 //特殊时候传输字符串,需要用JSON.parse或者eval,但是eval解析成json的时候,会识别并执行js代码,而JSON.parse会报错
 //JSON.stringfy()很少使用
 
+/***************验证码重新发送效果*******************/
+function settime($obj, time) {
+    if (time == 0) {
+      $obj.attr("disabled", false); 
+      $obj.css("background", "#f38401").css("cursor", "pointer");
+      $obj.text("获取手机验证码"); 
+      return; 
+    } else { 
+      $obj.attr("disabled", true);  
+      $obj.css("color", "#ccc").css("cursor", "not-allowed");
+      $obj.css("border-color", "#ccc") 
+      $obj.text("重新发送(" + time + ")");
+      time--; 
+    } 
+    setTimeout(function () { settime($obj, time) }, 1000) 
+  }
+  $("#getPhoneCode").click(function(){
+    settime($("#getPhoneCode"),60);
+  })
 
 
 
