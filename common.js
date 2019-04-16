@@ -995,9 +995,9 @@ if (childT0 != -1) {
      }
  }
 /**
- * 将复制t1的宽度给t2
- * @param {*} t1 jQuery对象
- * @param {*} t2 jQuery对象
+ * 将复制t1的宽度给t2(仅复制宽度)
+ * @param {*} t1 jQuery对象表格内部
+ * @param {*} t2 jQuery对象表头
  */
 function copyTableWidth(t1,t2){
     var t1_td_length = t1.find('tr').eq(0).find('th').length;
@@ -1010,7 +1010,7 @@ function copyTableWidth(t1,t2){
     }
 }
 
-
+//在table的ajax请求后的complete调用方法 copyTableWidth($("#tableBody"),$("#tableHead"));
 
 
 
