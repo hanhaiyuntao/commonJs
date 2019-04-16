@@ -775,6 +775,15 @@ OutPutFun("output");
 
         }
 
+var isClick = true;//防止用户点击过快
+$(".loginBtn").click(function () {
+    if (isClick) {
+        isClick = false;
+        UserLogin();//在ajax的complete中置换:isClick = true
+    }
+});
+
+
 /**22 --快速排序 */
 //找基准
 //遍历数据,大于基准放在left,小于基准放在right
@@ -968,6 +977,26 @@ var one= new CS();
 //1 var one={};创建一个空的one对象
 //2 one._proto_ = CS.prototype  将空对象的_proto_成员指向CS的prototype对象
 //3 CS.call(one) 将CS的this指针替换成one,然后调用CS原型上的方法
+
+
+/********************iframe中父子元素相互调用的方法***********************/
+
+//子调父
+window.parent.test()
+//父调子
+var childWindow = $("#windowPage")[0].contentWindow; //表示获取了嵌入在iframe中的子页面的window对象
+var sumC = $("#windowPage")[0];
+var childT0 = $(sumC).attr("src").indexOf('T0');
+if (childT0 != -1) {
+     try {
+         childWindow.refreshFocusTable(msg); //调用子页面中的subFunction方法。左上角//ToIndex 首页 左侧 所有信号列表
+     } catch (e) {
+
+     }
+ }
+
+
+
 
 
 
