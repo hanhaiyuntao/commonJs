@@ -994,6 +994,24 @@ if (childT0 != -1) {
 
      }
  }
+/**
+ * 将复制t1的宽度给t2
+ * @param {*} t1 jQuery对象
+ * @param {*} t2 jQuery对象
+ */
+function copyTableWidth(t1,t2){
+    var t1_td_length = t1.find('tr').eq(0).find('th').length;
+    var t2_td_length = t2.find('tr').eq(0).find('th').length;
+
+    if(t1_td_length===t2_td_length){
+        for(var i=0;i<t1_td_length;i++){
+            t2.find('th').eq(i).width(t1.find('td').eq(i).width());
+        }
+    }
+}
+
+
+
 
 
 
