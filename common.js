@@ -891,7 +891,13 @@ console.log(checkType('18.36','money'));
         }
     }
 
-//
+//慎用iframe
+//当子界面`有用到document属性时候,有bug,需要调用window.parent去请求例如微信支付
+ window.parent.document.addEventListener('WeixinJSBridgeReady', comnfirmPay, false);
+window.parent.WeixinJSBridge.invoke
+
+
+
 
 
 /********判断浏览器类型 进行不同网页跳转*********/
