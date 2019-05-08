@@ -150,12 +150,12 @@ function addDate(date, days) {
     }
     var date = new Date(date);
     date.setDate(date.getDate() + days);
-    var month = date.getMonth() + 1;
+    var month = date.getMonth() + 1;//返回的是单个的时间:1或者双的例如:12
     var day = date.getDate();
     var mm = "'" + month + "'";
     var dd = "'" + day + "'";
 
-    //单位数前面加0
+    //因此需要判断单位数前面加0
     if(mm.length == 3) {
         month = "0" + month;
     }
