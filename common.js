@@ -169,7 +169,16 @@ function addDate(date, days) {
 
 var addTime = addDate("2017-07-24", 2);
 console.log(addTime);//2017-07-26
-
+/**
+*日期做差
+*/
+function dateSubstract(begin, end) {
+    var dateStart = new Date(begin);
+    var dateEnd = new Date(end);
+    var difValue = (dateEnd - dateStart) / ((1000 * 60 * 60 * 24));
+    return difValue;
+}
+// console.log(dateSubstract('2019-05-08', '2019-05-10'));//2
 
 
 //6-    设置cookie(用在登录时,checked时保存周期)
