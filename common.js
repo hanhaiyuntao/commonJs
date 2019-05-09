@@ -304,7 +304,7 @@ for(let i = 0;i<bigObj.data.length;i++){
 /**对ie的兼容 */
 //10- 根据毫秒获取时间【年-月-日】(兼容ie专用)
 function GetDateByMillisecond(millisecond) {
-    var date = new Date(millisecond.replace('-', '/'));//为了兼容IE　必须将－　换成／
+    var date = new Date(millisecond.replace(/-/g, '/'));//为了兼容IE　必须将－　换成／
     var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
     var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
     return date.getFullYear() + "-" + month + "-" + currentDate;// + " " + hours + ":"
