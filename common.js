@@ -981,6 +981,77 @@ function goPAGE() {
 //express是更改
 //body-parser作用是对post请求的请求体进行解析,解析req.body的数据,解析成功后覆盖原来的req.body,失败为{};
 
+/**
+ * 判断是跳链还是直接加载界面
+ * 跳链渲染当前code的select跳转的列表
+ * 直接加载当前select第一条列表
+ * @returns {} 
+ */
+function getSelectProductNew() {
+    var selectArr = [];
+    $.ajax({
+        url: '/Company/GetCompanyProduct/',
+        type: "POST",
+        dataType: "json",
+        async: false,//同步执行
+        success: function (data) {
+            var result = data[0];
+            if (result.code == 200 && result.data.length > 0) {            
+                for (var i = 0; i < result.data.length; i++) {
+                    selectArr.push({//combobox必须是数组
+                        'code': result.data[i].Key,
+                        'txt': result.data[i].Value
+                    });
+                }
+                //前端渲染combobox
+                $('#selectProduct').combobox({
+                    width:200,
+                    textField: 'txt',
+                    valueField: 'code',
+                    data: selectArr,
+                    onSelect: function (record) {
+                        fund_id = record.code;
+                        mainCondition.fund_id = fund_id;
+                        $('#myproductTable').bootstrapTable('refresh');
+                    }
+                });
+               
+                fund_id = getQueryString('fund_id');//跳链获取
+                if (fund_id != null && fund_id != 'null' && fund_id != '') {  //从公司产品点击跳转,
+                    for (var j = 0; j < selectArr.length; j++) {//循环出数组中是当前传值的code
+                        if (fund_id == selectArr[j].code) {
+                            $("#selectProduct").combobox('select', selectArr[j].code); //选中当前传输的
+                        } else {
+                            $("#selectProduct").combobox('select', selectArr[0].code);//选中第一条
+                        }
+                    }
+                } else {//直接选中导航栏默认第一只产品的列表
+                    $("#selectProduct").combobox('select', selectArr[0].code);//选中第一条
+                }
+
+                fund_id = $('#selectProduct').combobox('getValue');//获取当前选中的
+                mainCondition.fund_id = fund_id;
+                initDataTable();//初始化列表
+             
+            } else {
+                errorSnackbar("获取数据出现异常，请稍后重试！");
+            }
+
+        },
+        error: function (json) {
+            console.log(json);
+            errorSnackbar("获取数据出现异常，请重试！");
+        }
+    });
+}
+
+
+
+
+
+
+
+
 
 /****************websockets************************ */
 
