@@ -558,9 +558,43 @@ function delayFn (fn, delay, mustDelay){
  * 函数节流,减少资源消耗
  */
 window.onscroll = delayFn(scrollHead, 100, 100);
+/**************************************更新 抖动与节流*********************/
+//防止抖动(输入框持续输入)
+//持续触发不执行不触发的一段时间之后再执行
+ function debounce(func,delay){
+    let timeout;
+    return function(){
+        clearTimeout(timeout);
+        timeout = setTimeout(function(){
+            func.apply(this,arguments)
+        },delay)
+    }
+ 
+ }
+//var i = 0;
+//    box.onmousemove = debounce(function (e) {
+//        console.log(i++)
+//
+//    }, 200);
+//节流(向下无限滚动获取新数据,图片懒加载)
+//持续触发并不会执行多次到一定时间再去执行
+function throttle(func,delay){
+    let run = true;
+    return function(){
+        if(!run){
+            return;//如果关闭了,就不执行以下代码
+        }
+        run = false;//持续触发的话,run一直是falase,让他一直停留在上面的判断
+        setTimeout(function(){
+            func.apply(this,arguments);
+            run  = true;//定时器到时候自己打开,函数继续执行
+        },delay)
+    }
+}
 
-
-
+   // box.onmousemove = throttle(function (e) {
+//        console.log(i++)
+//    }, 500)
 
 /** 16 -  粘贴自动携带版本声明 */
  document.addEventListener('copy', function (event) {
