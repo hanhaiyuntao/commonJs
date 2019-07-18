@@ -86,7 +86,9 @@ var convertDateFuncHMS = function (jsondate) {
         } else if (jsondate.indexOf("-") > 0) {
             jsondate = jsondate.substring(0, jsondate.indexOf("-"));
         }
-        var date = new Date(parseInt(jsondate, 10));
+        //防止其他时区转化错误  毫秒计算
+        var timezone = new Date().getTimezoneOffset();//当前地方时和UTC时间的差值，用分钟表示 
+        var date = new Date(parseInt(jsondate) + (timezone / 60 + 8) * 60 * 60 * 1000);//数据库毫秒+时差区间毫秒
         var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
         var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
         var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
