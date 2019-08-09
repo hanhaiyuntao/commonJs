@@ -75,72 +75,6 @@ function getQueryString(name) {
 }
 
 
-
-//5-    转化时间
-//json格式时间转化为格式化时间 yyyy-MM-dd HH:mm:ss
-var convertDateFuncHMS = function (jsondate) {
-    if (jsondate != null && jsondate != "") {
-        jsondate = jsondate.replace("/Date(", "").replace(")/", "");
-        if (jsondate.indexOf("+") > 0) {
-            jsondate = jsondate.substring(0, jsondate.indexOf("+"));
-        } else if (jsondate.indexOf("-") > 0) {
-            jsondate = jsondate.substring(0, jsondate.indexOf("-"));
-        }
-        //防止其他时区转化错误  毫秒计算
-        var timezone = new Date().getTimezoneOffset();//当前地方时和UTC时间的差值，用分钟表示 
-        var date = new Date(parseInt(jsondate) + (timezone / 60 + 8) * 60 * 60 * 1000);//数据库毫秒+时差区间毫秒
-        var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-        var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-        var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-        var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-        var second = date.getMilliseconds() / 1000 < 10 ? "0" + parseInt(date.getMilliseconds() / 1000) : parseInt(date.getMilliseconds() / 1000);
-        return date.getFullYear() + "-" + month + "-" + currentDate + hours + ":" + minutes + ":" + second
-    } else {
-        return "";
-    }
-};
-
-
-//json格式时间转化为格式化时间 yyyy MM dd HH mm ss
-var convertDateFuncYMDHMS = function (jsondate) {
-    if (jsondate != "" && jsondate != null) {
-        jsondate = jsondate.replace("/Date(", "").replace(")/", "");
-        if (jsondate.indexOf("+") > 0) {
-            jsondate = jsondate.substring(0, jsondate.indexOf("+"));
-        } else if (jsondate.indexOf("-") > 0) {
-            jsondate = jsondate.substring(0, jsondate.indexOf("-"));
-        }
-        var date = new Date(parseInt(jsondate, 10));
-        var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-        var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-        var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-        var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-        var second = date.getMilliseconds() / 1000 < 10 ? "0" + parseInt(date.getMilliseconds() / 1000) : parseInt(date.getMilliseconds() / 1000);
-        return date.getFullYear() + '' + month + currentDate + hours + minutes + second
-    } else {
-        return "";
-    }
-};
-
-
-
-//json格式时间转化为格式化时间 yyyy-MM-dd
-var convertDateFunc = function (jsondate) {
-    if (jsondate != null && jsondate != "") {
-        jsondate = jsondate.replace("/Date(", "").replace(")/", "");
-        if (jsondate.indexOf("+") > 0) {
-            jsondate = jsondate.substring(0, jsondate.indexOf("+"));
-        } else if (jsondate.indexOf("-") > 0) {
-            jsondate = jsondate.substring(0, jsondate.indexOf("-"));
-        }
-        var date = new Date(parseInt(jsondate, 10));
-        var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-        var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-        return date.getFullYear() + "-" + month + "-" + currentDate;
-    } else {
-        return "";
-    }
-};
 /**
  * 在原有日期基础上,增加days天数
  * @param {*} date //当前传输日期
@@ -256,63 +190,6 @@ let c = [...new Set([...arr1, ...arr2])].sort((a, b) => {
     return a - b;
 });
 
-//9-  ajax获取数据方法
-var AjaxF = function (params, ipPort) {
-    if (userToken == null || userToken == "" || userToken == undefined) {
-        return new {
-            success: false,
-            message: "身份验证失败",
-            data: null
-        };
-    } else {
-        $.ajax({
-            url: ipPort,
-            type: "get",
-            data: { usertoken: usertoken, params: params },
-            dataType: "jsonp",
-            success: function (data) {
-                return new {
-                    success: true,
-                    message: "success",
-                    data: data
-                }
-            },
-            error: function (error) {
-                return new {
-                    success: false,
-                    message: "error",
-                    data: error
-                }
-            }
-        });
-    }
-}
-//调用
-var objA = {
-     property: [],//公司性质
-     cityid: [],//办公地点
-     setup_date: [],//成立年限
-     b_company_scale: []//管理规模
-}
-var oUrl = 'GetPublicCompanyUpdateTime?jsoncallback=?'
-var bigObj = AjaxF(objA,oUrl);
-for(let i = 0;i<bigObj.data.length;i++){
-    
-}
-
-
-
-
-/**对ie的兼容 */
-//10- 根据毫秒获取时间【年-月-日】(兼容ie专用)
-function GetDateByMillisecond(millisecond) {
-    var date = new Date(millisecond.replace(/-/g, '/'));//为了兼容IE　必须将－　换成／
-    var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-    var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-    return date.getFullYear() + "-" + month + "-" + currentDate;// + " " + hours + ":"
-
-};
-
 if (typeof handDate == "undefined") {
     var handDate = {};
     handDate.general = 0;  // 通用 yy-mm-dd
@@ -403,7 +280,7 @@ $("input").on("keyup",function(){
 
 //12- 滚动条底部加载到底部加载更多
     /**判断滚动条是否滚动到底部 */
-    document.getElementById('contentContainer').onscroll=function(){
+document.getElementById('contentContainer').onscroll=function(){
     if(this.scrollTop+this.offsetHeight>=this.scrollHeight){
         pbPageNum++;
     }
@@ -832,30 +709,6 @@ funtion OutPutFun(str){
 }
 OutPutFun("output");
 
-/**21 --- 防止用户点击过快*/
-   var isClick = true;
-        var num = 0;
-        function add(){
-            if(isClick){
-              isClick = false;
-              console.log(num++);
-
-
-                setTimeout(function(){
-                    isClick = true;
-                }, 1000);
-            }
-
-        }
-
-var isClick = true;//防止用户点击过快
-$(".loginBtn").click(function () {
-    if (isClick) {
-        isClick = false;
-        UserLogin();//在ajax的complete中置换:isClick = true
-    }
-});
-
 
 /**22 --快速排序 */
 //找基准
@@ -934,36 +787,6 @@ checkType('money',function (str) {
 //使用金额校验规则
 console.log(checkType('18.36','money'));
 
-/***数据库数据转表****/
-//https://www.easy-mock.com/project/5b3c364310a1f82172313f40
-//success代码
-    var dateArr = [];
-    for(var i = 0;i<obj.data.length;i++){
-        dateArr.push(obj.data[i].enddate);
-    }
-    var newdateArr = [...new Set(dateArr)];
-    var th='<td>--</td>'
-    for(var i = 0;i<newdateArr.length;i++){
-        th+='<td>'+newdateArr[i]+'</td>'
-    }
-    $("#csTh").html(th);
-    var firstName=obj.data[0].holdclass;
-    var td='<td>'+obj.data[0].holdclass+'</td>';
-    for(var i = 0;i<obj.data.length;i++){
-        if  (firstName==obj.data[i].holdclass){
-            td+='<td>'+obj.data[i].sum+'</td>';
-            if(i==obj.data.length-1){
-                $("#csTbody").append('<tr>'+td+'</tr>');//最后一次添加的数据
-            }
-        }
-        else {
-            $("#csTbody").append('<tr>'+td+'</tr>');
-             firstName=obj.data[i].holdclass;
-            td='<td>'+obj.data[i].holdclass+'</td>';          
-            td+='<td>'+obj.data[i].sum+'</td>';
-        }
-    }
-
 //慎用iframe
 //当子界面`有用到document属性时候,有bug,需要调用window.parent去请求例如微信支付
  window.parent.document.addEventListener('WeixinJSBridgeReady', comnfirmPay, false);
@@ -1008,9 +831,6 @@ function goPAGE() {
         }
     }
 }
-
-
-
 /*正则匹配去掉扒站工具标签  tppabs=\"[a-zA-z]+://[^\s]*\"   tppabs="h[^"]*" */
 
 /**************Node.js******************** */
