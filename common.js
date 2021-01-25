@@ -398,6 +398,20 @@ var division = function (arg1, arg2) {
 };
 
 
+    /**
+     * arr 数组
+     * num 拆分数量
+    */
+    function splitArrNum(arr,num){
+        let newArr = [];
+        for(let i = 0;i<arr.length;i=i+num){
+            newArr.push(arr.slice(i,i+num))
+        }
+        return newArr;
+    }
+
+
+
 
 /*
  *15    -函数抖动节流(onmouseover,onresize,onscroll);
